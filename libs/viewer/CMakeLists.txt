@@ -28,6 +28,7 @@ set(SRCS
 # Include and target definitions
 # ==================================================================================================
 add_library(${TARGET} STATIC ${PUBLIC_HDRS} ${SRCS})
+set_target_properties(${TARGET} PROPERTIES FOLDER "libs")
 target_link_libraries(${TARGET} PUBLIC imgui filament gltfio_core filagui jsmn civetweb)
 target_include_directories(${TARGET} PUBLIC ${PUBLIC_HDR_DIR})
 
@@ -52,5 +53,6 @@ install(DIRECTORY ${PUBLIC_HDR_DIR}/viewer DESTINATION include)
 # ==================================================================================================
 if (NOT ANDROID AND NOT WEBGL AND NOT IOS)
     add_executable(test_settings tests/test_settings.cpp)
+    set_target_properties(test_settings PROPERTIES FOLDER "libs/tests")
     target_link_libraries(test_settings PRIVATE ${TARGET} gtest)
 endif()

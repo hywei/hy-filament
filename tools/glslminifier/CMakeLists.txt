@@ -12,6 +12,7 @@ set(SRCS src/main.cpp src/GlslMinify.cpp)
 # Target definitions
 # ==================================================================================================
 add_executable(${TARGET} ${SRCS})
+set_target_properties(${TARGET} PROPERTIES FOLDER "tools")
 target_link_libraries(${TARGET} PRIVATE utils getopt)
 
 # =================================================================================================
@@ -35,6 +36,7 @@ if (NOT ANDROID)
             src/GlslMinify.cpp
             tests/test_glslminifier.cpp
     )
+    set_target_properties(test_${TARGET} PROPERTIES FOLDER "tools/tests")
     target_include_directories(test_${TARGET} PRIVATE src)
     target_link_libraries(test_${TARGET} PRIVATE gtest)
 endif()

@@ -11,6 +11,7 @@ set(SRCS
 )
 
 add_library(${TARGET} STATIC ${SRCS})
+set_target_properties(${TARGET} PROPERTIES FOLDER "third_party")
 
 target_compile_options(${TARGET} PRIVATE
         $<$<PLATFORM_ID:Linux>:-fPIC>

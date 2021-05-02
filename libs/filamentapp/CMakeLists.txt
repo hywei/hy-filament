@@ -121,6 +121,8 @@ add_custom_command(OUTPUT ${DUMMY_SRC} COMMAND echo "//" > ${DUMMY_SRC})
 
 add_library(filamentapp-resources ${DUMMY_SRC} ${RESGEN_SOURCE})
 
+set_target_properties(filamentapp-resources PROPERTIES FOLDER "libs")
+
 # ==================================================================================================
 # Include and target definitions
 # ==================================================================================================
@@ -128,6 +130,8 @@ add_library(filamentapp-resources ${DUMMY_SRC} ${RESGEN_SOURCE})
 include_directories(${PUBLIC_HDR_DIR})
 
 add_library(${TARGET} STATIC ${PUBLIC_HDRS} ${SRCS})
+
+set_target_properties(${TARGET} PROPERTIES FOLDER "libs")
 
 target_link_libraries(${TARGET} PUBLIC ${LIBS} filamentapp-resources)
 

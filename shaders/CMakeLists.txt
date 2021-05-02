@@ -105,6 +105,7 @@ endif()
 # Include and target definitions
 # ==================================================================================================
 add_library(${TARGET} STATIC ${RESGEN_SOURCE})
+set_target_properties(${TARGET} PROPERTIES FOLDER "shaders")
 target_include_directories(${TARGET} PUBLIC ${CMAKE_CURRENT_BINARY_DIR})
 
 # ==================================================================================================

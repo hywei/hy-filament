@@ -40,6 +40,7 @@ set(SRCS src/dummy.cpp)
 include_directories(${PUBLIC_HDR_DIR})
 
 add_library(${TARGET} STATIC ${PUBLIC_HDRS} ${SRCS})
+set_target_properties(${TARGET} PROPERTIES FOLDER "libs")
 target_compile_options(${TARGET} PRIVATE ${OPTIMIZATION_FLAGS})
 target_include_directories(${TARGET} PUBLIC ${PUBLIC_HDR_DIR})
 
@@ -58,6 +59,7 @@ add_executable(test_${TARGET}
         tests/test_vec.cpp
         tests/test_quat.cpp
 )
+set_target_properties(test_${TARGET} PROPERTIES FOLDER "libs/tests")
 target_link_libraries(test_${TARGET} PRIVATE math gtest)
 
 # ==================================================================================================
@@ -68,6 +70,8 @@ set(BENCHMARK_SRCS
         benchmarks/benchmark_fast.cpp include/math/mathfwd.h)
 
 add_executable(benchmark_${TARGET} ${BENCHMARK_SRCS})
+
+set_target_properties(benchmark_${TARGET} PROPERTIES FOLDER "libs/benchmarks")
 
 target_compile_options(benchmark_${TARGET} PRIVATE ${OPTIMIZATION_FLAGS})
 

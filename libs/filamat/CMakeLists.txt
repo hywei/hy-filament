@@ -85,11 +85,13 @@ include_directories(${CMAKE_BINARY_DIR})
 
 # Filamat
 add_library(${TARGET} STATIC ${HDRS} ${PRIVATE_HDRS} ${SRCS})
+set_target_properties(${TARGET} PROPERTIES FOLDER "libs")
 target_include_directories(${TARGET} PUBLIC ${PUBLIC_HDR_DIR})
 target_link_libraries(${TARGET} shaders filabridge utils smol-v)
 
 # Filamat Lite
 add_library(filamat_lite STATIC ${HDRS} ${LITE_PRIVATE_HDRS} ${LITE_SRCS})
+set_target_properties(filamat_lite PROPERTIES FOLDER "libs")
 target_include_directories(filamat_lite PUBLIC ${PUBLIC_HDR_DIR})
 target_link_libraries(filamat_lite shaders filabridge utils)
 
@@ -170,6 +172,7 @@ set(SRCS
         tests/test_includes.cpp)
 
 add_executable(${TARGET} ${SRCS})
+set_target_properties(${TARGET} PROPERTIES FOLDER "libs/tests")
 
 target_include_directories(${TARGET} PRIVATE src)
 
@@ -180,6 +183,7 @@ set(SRCS
         tests/test_filamat_lite.cpp)
 
 add_executable(${TARGET} ${SRCS})
+set_target_properties(${TARGET} PROPERTIES FOLDER "libs/tests")
 
 target_include_directories(${TARGET} PRIVATE src)
 

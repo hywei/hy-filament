@@ -83,6 +83,11 @@ add_custom_command(OUTPUT ${DUMMY_SRC} COMMAND echo "//" > ${DUMMY_SRC})
 
 add_library(sample-resources ${DUMMY_SRC} ${RESGEN_SOURCE})
 
+if(MSVC)
+    set_target_properties(sample-resources PROPERTIES
+        FOLDER "samples")
+endif()
+
 # ==================================================================================================
 # Invoke cmgen to build KTX files for the default IBL and skybox
 # ==================================================================================================
@@ -170,11 +175,15 @@ endif()
 
 add_library(suzanne-resources ${DUMMY_SRC} ${RESGEN_SOURCE})
 
+set_target_properties(suzanne-resources PROPERTIES FOLDER "samples")
+
 # ==================================================================================================
 # Resources for gltf_viewer
 # ==================================================================================================
 
 add_library(gltf-resources ${DUMMY_SRC})
+
+set_target_properties(gltf-resources PROPERTIES FOLDER "samples")
 
 set(GLTF_VIEWER_RESOURCE_FILES
     ${ROOT_DIR}/third_party/models/DamagedHelmet/DamagedHelmet.glb
@@ -217,6 +226,9 @@ function(add_demo NAME)
     add_executable(${NAME} ${NAME}.cpp)
     target_link_libraries(${NAME} PRIVATE sample-resources filamentapp)
     target_compile_options(${NAME} PRIVATE ${COMPILER_FLAGS})
+
+    # add target properties
+    set_target_properties(${NAME} PROPERTIES FOLDER "samples/demos")
 endfunction()
 
 if (NOT ANDROID)
@@ -292,13 +304,16 @@ endif()
 
 file(COPY ../third_party/textures DESTINATION ${PROJECT_BINARY_DIR})
 add_custom_target(textures ALL DEPENDS textures)
+set_target_properties(textures PROPERTIES FOLDER "samples")
 add_dependencies(filament textures)
 
 file(COPY ../assets DESTINATION ${PROJECT_BINARY_DIR}
         PATTERN "reference" EXCLUDE
         PATTERN "environments" EXCLUDE)
 add_custom_target(assets ALL DEPENDS assets)
+set_target_properties(assets PROPERTIES FOLDER "samples")
 add_dependencies(filament assets)
 
 add_custom_target(envs DEPENDS ${target_envmaps})
+set_target_properties(envs PROPERTIES FOLDER "samples")
 add_dependencies(filament envs)

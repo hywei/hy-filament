@@ -14,7 +14,7 @@ set(SRCS src/main.cpp)
 # Target definitions
 # ==================================================================================================
 add_executable(${TARGET} ${HDRS} ${SRCS})
-
+set_target_properties(${TARGET} PROPERTIES FOLDER "tools")
 target_link_libraries(${TARGET} PRIVATE math utils z image imageio getopt)
 
 # ==================================================================================================

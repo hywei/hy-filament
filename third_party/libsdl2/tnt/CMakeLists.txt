@@ -143,6 +143,7 @@ add_definitions(-D_THREAD_SAFE)
 
 # we're building a library
 add_library(${TARGET} SHARED ${SRCS})
+set_target_properties(${TARGET} PROPERTIES FOLDER "third_party")
 
 # libraries we're linking against
 target_link_libraries(${TARGET} ${EXTRA_LIBS})
@@ -163,6 +164,7 @@ target_include_directories(${TARGET} PUBLIC ${PUBLIC_HDR_DIR})
 if (WIN32)
     # Windows needs a WinMain static library.
     add_library(${TARGET}main ${SRC_DIR}/main/windows/SDL_windows_main.c)
+    set_target_properties(${TARGET}main PROPERTIES FOLDER "third_party")
     if(NOT MSVC)
         # Making this option public because the warning occurs in public headers
         target_compile_options(${TARGET} PUBLIC -Wno-pragma-pack)

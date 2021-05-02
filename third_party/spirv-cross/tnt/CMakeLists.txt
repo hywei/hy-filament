@@ -61,7 +61,8 @@ macro(spirv_cross_add_library name config_name)
   extract_headers(hdrs "${ARGN}")
   target_include_directories(${name} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/..)
   set_target_properties(${name} PROPERTIES
-      PUBLIC_HEADERS "${hdrs}")
+      PUBLIC_HEADERS "${hdrs}"
+      FOLDER "third_party/spirv-cross")
   target_compile_options(${name} PRIVATE ${spirv-compiler-options})
   target_compile_definitions(${name} PRIVATE ${spirv-compiler-defines})
   target_compile_definitions(${name} PUBLIC ${spirv-compiler-public-defines})

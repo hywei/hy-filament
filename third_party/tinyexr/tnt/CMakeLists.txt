@@ -18,5 +18,6 @@ set(SRCS ${SRC_DIR}/tnt/tinyexr.cc)
 include_directories(${PUBLIC_HDR_DIR})
 
 add_library(${TARGET} STATIC ${PUBLIC_HDRS} ${SRCS})
+set_target_properties(${TARGET} PROPERTIES FOLDER "third_party")
 target_include_directories (${TARGET} PUBLIC ${PUBLIC_HDR_DIR})
 target_link_libraries(${TARGET} LINK_PUBLIC z)

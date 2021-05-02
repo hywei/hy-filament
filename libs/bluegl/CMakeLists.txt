@@ -40,6 +40,9 @@ include_directories(${PUBLIC_HDR_DIR})
 # we're building a library
 add_library(${TARGET} STATIC ${PUBLIC_HDRS} ${SRCS})
 
+# add target properties
+set_target_properties(${TARGET} PROPERTIES FOLDER "libs")
+
 # specify where the public headers of this library are
 target_include_directories(${TARGET} PUBLIC ${PUBLIC_HDR_DIR})
 
@@ -54,6 +57,9 @@ add_executable(test_${TARGET}
     tests/OpenGLSupport.cpp
     tests/OpenGLSupport.hpp
     tests/test_bluegl.cpp)
+
+# add target properties
+set_target_properties(test_${TARGET} PROPERTIES FOLDER "libs/tests")
 
 if (LINUX)
     target_link_libraries(test_${TARGET} PUBLIC dl)

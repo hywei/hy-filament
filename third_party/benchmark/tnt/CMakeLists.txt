@@ -32,6 +32,8 @@ include_directories(
 # we're building a library
 add_library(${TARGET} STATIC ${SRCS})
 
+set_target_properties(${TARGET} PROPERTIES FOLDER "third_party")
+
 if (LINUX)
   set(THREADS_PREFER_PTHREAD_FLAG ON)
   find_package(Threads REQUIRED)
@@ -43,5 +45,6 @@ target_include_directories(${TARGET} PUBLIC ${PUBLIC_HDR_DIR})
 
 # Benchmark main library
 add_library(${TARGET}_main ${SRC_DIR}/benchmark_main.cc)
+set_target_properties(${TARGET}_main PROPERTIES FOLDER "third_party")
 target_include_directories(${TARGET} PUBLIC ${PUBLIC_HDR_DIR})
 target_link_libraries(${TARGET}_main benchmark)

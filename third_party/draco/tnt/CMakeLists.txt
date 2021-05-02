@@ -422,48 +422,103 @@ if(BUILD_SHARED_LIBS)
   set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 endif()
 add_library(draco_attributes OBJECT ${draco_attributes_sources})
+set_target_properties(draco_attributes PROPERTIES FOLDER "third_party/draco")
+
 add_library(draco_compression_attributes_dec
             OBJECT ${draco_compression_attributes_dec_sources})
+set_target_properties(draco_compression_attributes_dec PROPERTIES FOLDER "third_party/draco")
+
 add_library(draco_compression_attributes_enc
             OBJECT ${draco_compression_attributes_enc_sources})
+set_target_properties(draco_compression_attributes_enc PROPERTIES FOLDER "third_party/draco")
+
 add_library(draco_compression_attributes_pred_schemes_dec
             OBJECT ${draco_compression_attributes_pred_schemes_dec_sources})
+set_target_properties(draco_compression_attributes_pred_schemes_dec PROPERTIES FOLDER "third_party/draco")
+
 add_library(draco_compression_attributes_pred_schemes_enc
             OBJECT ${draco_compression_attributes_pred_schemes_enc_sources})
+set_target_properties(draco_compression_attributes_pred_schemes_enc PROPERTIES FOLDER "third_party/draco")
+
 add_library(draco_compression_bit_coders
             OBJECT ${draco_compression_bit_coders_sources})
+set_target_properties(draco_compression_bit_coders PROPERTIES FOLDER "third_party/draco")
+
 add_library(draco_enc_config OBJECT ${draco_enc_config_sources})
+set_target_properties(draco_enc_config PROPERTIES FOLDER "third_party/draco")
+
 add_library(draco_dec_config OBJECT ${draco_dec_config_sources})
+set_target_properties(draco_dec_config PROPERTIES FOLDER "third_party/draco")
+
 add_library(draco_compression_decode OBJECT
                                       ${draco_compression_decode_sources})
+set_target_properties(draco_compression_decode PROPERTIES FOLDER "third_party/draco")
+
 add_library(draco_compression_encode OBJECT
                                       ${draco_compression_encode_sources})
+set_target_properties(draco_compression_encode PROPERTIES FOLDER "third_party/draco")
+
 add_library(draco_compression_entropy OBJECT
                                       ${draco_compression_entropy_sources})
+set_target_properties(draco_compression_entropy PROPERTIES FOLDER "third_party/draco")
+
 add_library(draco_compression_mesh_traverser
             OBJECT ${draco_compression_mesh_traverser_sources})
+set_target_properties(draco_compression_mesh_traverser PROPERTIES FOLDER "third_party/draco")
+
 add_library(draco_compression_mesh_dec OBJECT
                                         ${draco_compression_mesh_dec_sources})
+set_target_properties(draco_compression_mesh_dec PROPERTIES FOLDER "third_party/draco")
+
 add_library(draco_compression_mesh_enc OBJECT
                                         ${draco_compression_mesh_enc_sources})
+set_target_properties(draco_compression_mesh_enc PROPERTIES FOLDER "third_party/draco")
+
 add_library(draco_compression_point_cloud_dec
             OBJECT ${draco_compression_point_cloud_dec_sources})
+set_target_properties(draco_compression_point_cloud_dec PROPERTIES FOLDER "third_party/draco")
+
 add_library(draco_compression_point_cloud_enc
             OBJECT ${draco_compression_point_cloud_enc_sources})
+set_target_properties(draco_compression_point_cloud_enc PROPERTIES FOLDER "third_party/draco")
+
 add_library(draco_core OBJECT ${draco_core_sources})
+set_target_properties(draco_core PROPERTIES FOLDER "third_party/draco")
+
 add_library(draco_io OBJECT ${draco_io_sources})
+set_target_properties(draco_io PROPERTIES FOLDER "third_party/draco")
+
 add_library(draco_mesh OBJECT ${draco_mesh_sources})
+set_target_properties(draco_mesh PROPERTIES FOLDER "third_party/draco")
+
 add_library(draco_metadata_dec OBJECT ${draco_metadata_dec_sources})
+set_target_properties(draco_metadata_dec PROPERTIES FOLDER "third_party/draco")
+
 add_library(draco_metadata_enc OBJECT ${draco_metadata_enc_sources})
+set_target_properties(draco_metadata_enc PROPERTIES FOLDER "third_party/draco")
+
 add_library(draco_metadata OBJECT ${draco_metadata_sources})
+set_target_properties(draco_metadata PROPERTIES FOLDER "third_party/draco")
+
 add_library(draco_animation_dec OBJECT ${draco_animation_dec_sources})
+set_target_properties(draco_animation_dec PROPERTIES FOLDER "third_party/draco")
+
 add_library(draco_animation_enc OBJECT ${draco_animation_enc_sources})
+set_target_properties(draco_animation_enc PROPERTIES FOLDER "third_party/draco")
+
 add_library(draco_animation OBJECT ${draco_animation_sources})
+set_target_properties(draco_animation PROPERTIES FOLDER "third_party/draco")
+
 add_library(draco_point_cloud OBJECT ${draco_point_cloud_sources})
+set_target_properties(draco_point_cloud PROPERTIES FOLDER "third_party/draco")
+
 add_library(draco_points_dec OBJECT ${draco_points_common_sources}
                               ${draco_points_dec_sources})
+set_target_properties(draco_points_dec PROPERTIES FOLDER "third_party/draco")
+
 add_library(draco_points_enc OBJECT ${draco_points_common_sources}
                               ${draco_points_enc_sources})
+set_target_properties(draco_points_enc PROPERTIES FOLDER "third_party/draco")
 
 # Library targets that consume the object collections.
 add_library(dracodec
@@ -485,6 +540,7 @@ add_library(dracodec
             $<TARGET_OBJECTS:draco_animation_dec>
             $<TARGET_OBJECTS:draco_point_cloud>
             $<TARGET_OBJECTS:draco_points_dec>)
+set_target_properties(dracodec PROPERTIES FOLDER "third_party/draco")
 
 list(APPEND draco_header_only_targets
       draco_compression_attributes_pred_schemes_dec

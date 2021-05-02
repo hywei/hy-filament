@@ -21,4 +21,6 @@ file(GLOB SOURCES
 	${PROJECT_SOURCE_DIR}/EtcCodec/*.cpp)
 ADD_LIBRARY(EtcLib ${SOURCES})
 
+set_target_properties(EtcLib PROPERTIES FOLDER "third_party/etc2comp")
+
 target_include_directories(EtcLib PUBLIC Etc EtcCodec)

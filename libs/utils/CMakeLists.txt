@@ -84,6 +84,7 @@ endif()
 include_directories(${PUBLIC_HDR_DIR})
 
 add_library(${TARGET} STATIC ${PUBLIC_HDRS} ${SRCS})
+set_target_properties(${TARGET} PROPERTIES FOLDER "libs")
 target_include_directories(${TARGET} PUBLIC ${PUBLIC_HDR_DIR})
 target_link_libraries(${TARGET} PUBLIC tsl)
 
@@ -155,6 +156,7 @@ if (NOT WEBGL)
 endif()
 
 add_executable(test_${TARGET} ${TEST_SRCS})
+set_target_properties(test_${TARGET} PROPERTIES FOLDER "libs/tests")
 
 target_link_libraries(test_${TARGET} PRIVATE gtest utils tsl math)
 
@@ -165,6 +167,7 @@ target_link_libraries(test_${TARGET} PRIVATE gtest utils tsl math)
 if (NOT WEBGL)
 
     add_library(benchmark_${TARGET}_callee SHARED benchmark/benchmark_callee.cpp)
+    set_target_properties(benchmark_${TARGET}_callee PROPERTIES FOLDER "libs/benchmarks")
 
     set(BENCHMARK_SRCS
             benchmark/benchmark_allocators.cpp
@@ -176,6 +179,7 @@ if (NOT WEBGL)
 
 
     add_executable(benchmark_${TARGET} ${BENCHMARK_SRCS})
+    set_target_properties(benchmark_${TARGET} PROPERTIES FOLDER "libs/benchmarks")
 
     target_link_libraries(benchmark_${TARGET} PRIVATE benchmark_main utils benchmark_${TARGET}_callee)
 

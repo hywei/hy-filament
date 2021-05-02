@@ -25,6 +25,9 @@ include_directories(${PUBLIC_HDR_DIR})
 
 add_library(${TARGET} STATIC ${PUBLIC_HDRS} ${SRCS})
 
+# add target properties
+set_target_properties(${TARGET} PROPERTIES FOLDER "libs")
+
 target_link_libraries(${TARGET} utils math)
 
 target_include_directories(${TARGET} PUBLIC ${PUBLIC_HDR_DIR})
@@ -32,6 +35,7 @@ target_include_directories(${TARGET} PUBLIC ${PUBLIC_HDR_DIR})
 # test_bluevk is not supported on mobile or Windows
 if (NOT ANDROID AND NOT IOS AND NOT WIN32)
     add_executable(test_bluevk tests/test_bluevk_sdl.cpp)
+    set_target_properties(test_bluevk PROPERTIES FOLDER "libs/tests")
     target_link_libraries(test_bluevk PRIVATE dl bluevk sdl2)
 endif()
 

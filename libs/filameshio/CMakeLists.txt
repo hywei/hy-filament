@@ -20,6 +20,7 @@ set(SRCS src/MeshReader.cpp)
 # ==================================================================================================
 include_directories(${PUBLIC_HDR_DIR})
 add_library(${TARGET} STATIC ${PUBLIC_HDRS} ${SRCS})
+set_target_properties(${TARGET} PROPERTIES FOLDER "libs")
 target_include_directories(${TARGET} PUBLIC ${PUBLIC_HDR_DIR})
 target_link_libraries(${TARGET}
     PRIVATE meshoptimizer
@@ -38,5 +39,6 @@ install(FILES ${DIST_HDRS} DESTINATION include/${TARGET})
 # ==================================================================================================
 if (NOT IOS AND NOT WEBGL AND NOT ANDROID)
     add_executable(test_${TARGET} tests/test_filamesh.cpp )
+    set_target_properties(test_${TARGET} PROPERTIES FOLDER "libs/tests")
     target_link_libraries(test_${TARGET} PRIVATE filameshio gtest)
 endif()

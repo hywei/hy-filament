@@ -47,6 +47,7 @@ if (TNT_DEV)
             filament_framegraph_test.cpp
             filament_test.cpp)
 
+    set_target_properties(test_${TARGET} PROPERTIES FOLDER "filament")
     target_link_libraries(test_${TARGET} PRIVATE filament gtest)
     target_compile_options(test_${TARGET} PRIVATE ${COMPILER_FLAGS})
 
@@ -57,6 +58,7 @@ endif()
 add_executable(test_material_parser
         filament_test_material_parser.cpp
         ${RESGEN_SOURCE})
+set_target_properties(test_material_parser PROPERTIES FOLDER "filament")
 target_link_libraries(test_material_parser PRIVATE filament gtest)
 target_compile_options(test_material_parser PRIVATE ${COMPILER_FLAGS})
 target_include_directories(test_material_parser PRIVATE ${RESOURCE_DIR})

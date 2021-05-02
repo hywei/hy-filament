@@ -34,10 +34,12 @@ set(SRCS
 include_directories(${PUBLIC_HDR_DIR})
 
 add_library(${TARGET} ${PUBLIC_HDRS} ${PRIVATE_HDRS} ${SRCS})
+set_target_properties(${TARGET} PROPERTIES FOLDER "libs")
 target_include_directories(${TARGET} PUBLIC ${PUBLIC_HDR_DIR})
 target_link_libraries(${TARGET} math utils)
 
 add_library(${TARGET}-lite ${PUBLIC_HDRS} ${PRIVATE_HDRS} ${SRCS})
+set_target_properties(${TARGET}-lite PROPERTIES FOLDER "libs")
 target_compile_definitions(${TARGET}-lite PUBLIC -DFILAMENT_IBL_LITE=1)
 target_include_directories(${TARGET}-lite PUBLIC ${PUBLIC_HDR_DIR})
 target_link_libraries(${TARGET}-lite math utils)

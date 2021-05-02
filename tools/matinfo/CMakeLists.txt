@@ -12,7 +12,7 @@ set(SRCS src/main.cpp)
 # Target definitions
 # ==================================================================================================
 add_executable(${TARGET} ${SRCS})
-
+set_target_properties(${TARGET} PROPERTIES FOLDER "tools")
 target_link_libraries(${TARGET} matdbg filaflat backend_headers utils getopt SPIRV-Tools spirv-cross-glsl)
 
 # glslang contains a copy of the SPIRV headers, so let's just use those. The leading ".." in the

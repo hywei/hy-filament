@@ -20,6 +20,7 @@ set(SOURCES
 )
 
 add_library(meshoptimizer STATIC ${SOURCES})
+set_target_properties(meshoptimizer PROPERTIES FOLDER "third_party")
 target_include_directories(meshoptimizer INTERFACE "${CMAKE_CURRENT_SOURCE_DIR}/src")
 
 if(MSVC)
@@ -30,6 +31,7 @@ endif()
 
 if(BUILD_DEMO)
     add_executable(demo demo/main.cpp demo/miniz.cpp demo/objparser.cpp)
+    set_target_properties(demo PROPERTIES FOLDER "third_party")
     target_link_libraries(demo meshoptimizer)
 endif()
 

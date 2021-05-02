@@ -27,6 +27,7 @@ set(SRCS
 include_directories(${PUBLIC_HDR_DIR})
 
 add_library(${TARGET} STATIC ${PUBLIC_HDRS} ${SRCS})
+set_target_properties(${TARGET} PROPERTIES FOLDER "libs")
 
 target_include_directories(${TARGET} PUBLIC ${PUBLIC_HDR_DIR})
 

@@ -29,6 +29,7 @@ set(SRCS
 include_directories(${PUBLIC_HDR_DIR})
 
 add_library(${TARGET} STATIC ${PUBLIC_HDRS} ${SRCS})
+set_target_properties(${TARGET} PROPERTIES FOLDER "libs")
 
 target_link_libraries(${TARGET} PUBLIC math utils)
 
@@ -48,6 +49,7 @@ endif()
 # Expose header-only utilities to lean-and-mean client projects.
 # ==================================================================================================
 add_library(image_headers INTERFACE)
+set_target_properties(image_headers PROPERTIES FOLDER "libs")
 target_include_directories(image_headers INTERFACE ${PUBLIC_HDR_DIR})
 
 # ==================================================================================================
@@ -61,5 +63,6 @@ install(DIRECTORY ${PUBLIC_HDR_DIR}/image DESTINATION include)
 # ==================================================================================================
 if (NOT ANDROID AND NOT WEBGL AND NOT IOS)
     add_executable(test_${TARGET} tests/test_image.cpp)
+    set_target_properties(test_${TARGET} PROPERTIES FOLDER "libs/tests")
     target_link_libraries(test_${TARGET} PRIVATE image imageio gtest)
 endif()

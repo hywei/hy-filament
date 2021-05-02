@@ -26,6 +26,7 @@ include_directories(
 
 # we're building a library
 add_library(${TARGET} STATIC ${SRCS})
+set_target_properties(${TARGET} PROPERTIES FOLDER "third_party")
 
 if (LINUX)
     set(THREADS_PREFER_PTHREAD_FLAG ON)

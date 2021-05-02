@@ -174,10 +174,15 @@ list(APPEND OPCODE_CPP_DEPENDS ${GENERATOR_INC_FILE})
 # multiple targets depend on the same custom command.
 add_custom_target(core_tables
   DEPENDS ${OPCODE_CPP_DEPENDS} ${OPERAND_CPP_DEPENDS})
+set_target_properties(core_tables PROPERTIES FOLDER "third_party/spirv-tools")
+
 add_custom_target(enum_string_mapping
   DEPENDS ${EXTENSION_H_DEPENDS} ${ENUM_STRING_MAPPING_CPP_DEPENDS})
+set_target_properties(enum_string_mapping PROPERTIES FOLDER "third_party/spirv-tools")
+
 add_custom_target(extinst_tables
   DEPENDS ${EXTINST_CPP_DEPENDS})
+set_target_properties(extinst_tables PROPERTIES FOLDER "third_party/spirv-tools")
 
 set_source_files_properties(
   ${CMAKE_CURRENT_SOURCE_DIR}/extensions.h

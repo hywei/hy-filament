@@ -49,6 +49,8 @@ endif()
 # we're building a library
 add_library(${TARGET} STATIC ${PRIVATE_HDRS} ${PUBLIC_HDRS} ${SRCS})
 
+set_target_properties(${TARGET} PROPERTIES FOLDER "third_party")
+
 # disable ARM neon optimizations, let the compiler do it if it can
 target_compile_definitions(${TARGET} PRIVATE PNG_ARM_NEON_OPT=0)
 

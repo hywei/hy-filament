@@ -42,6 +42,8 @@ endif()
 
 add_library(${TARGET} STATIC ${SOURCES})
 
+set_target_properties(${TARGET} PROPERTIES FOLDER "third_party")
+
 target_link_libraries(${TARGET} LINK_PUBLIC)
 
 target_include_directories (${TARGET} PUBLIC ${HDRDIR})

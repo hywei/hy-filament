@@ -106,7 +106,7 @@ set(DUMMY_SRC "${RESOURCE_DIR}/dummy.c")
 add_custom_command(OUTPUT ${DUMMY_SRC} COMMAND echo "//" > ${DUMMY_SRC})
 
 add_library(gltfio_resources ${DUMMY_SRC} ${RESGEN_SOURCE})
-
+set_target_properties(gltfio_resources PROPERTIES FOLDER "libs")
 # ==================================================================================================
 # Build "lite" resources library, which contains only a few materials
 # ==================================================================================================
@@ -157,6 +157,7 @@ set(DUMMY_SRC "${LITE_DIR}/dummy.c")
 add_custom_command(OUTPUT ${DUMMY_SRC} COMMAND echo "//" > ${DUMMY_SRC})
 
 add_library(gltfio_resources_lite ${DUMMY_SRC} ${RESGEN_SOURCE})
+set_target_properties(gltfio_resources_lite PROPERTIES FOLDER "libs")
 
 # ==================================================================================================
 # Build the "core" library (no filamat)
@@ -166,6 +167,7 @@ include_directories(${PUBLIC_HDR_DIR} ${RESOURCE_DIR})
 link_libraries(math utils filament cgltf stb geometry gltfio_resources tsl trie)
 
 add_library(gltfio_core STATIC ${PUBLIC_HDRS} ${SRCS})
+set_target_properties(gltfio_core PROPERTIES FOLDER "libs")
 
 target_include_directories(gltfio_core PUBLIC ${PUBLIC_HDR_DIR})
 
@@ -178,6 +180,7 @@ if (NOT WEBGL AND NOT ANDROID AND NOT IOS)
     # Link the core library with additional dependencies to create the "full" library
     # ==================================================================================================
     add_library(${TARGET} STATIC ${PUBLIC_HDRS} src/MaterialGenerator.cpp)
+    set_target_properties(${TARGET} PROPERTIES FOLDER "libs")
     target_link_libraries(${TARGET} PUBLIC filamat gltfio_core)
     target_include_directories(${TARGET} PUBLIC ${PUBLIC_HDR_DIR})
 

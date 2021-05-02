@@ -41,6 +41,7 @@ set(SRCS
 # ==================================================================================================
 add_library(${TARGET} STATIC ${SRCS} ${HDRS})
 
+set_target_properties(${TARGET} PROPERTIES FOLDER "tools")
 target_include_directories(${TARGET} PUBLIC src)
 target_include_directories(${TARGET} PRIVATE ${filamat_SOURCE_DIR}/src)
 
@@ -69,6 +70,7 @@ set(SRCS src/main.cpp)
 # Target definitions
 # ==================================================================================================
 add_executable(${TARGET} ${SRCS} ${HDRS})
+set_target_properties(${TARGET} PROPERTIES FOLDER "tools")
 target_link_libraries(${TARGET} matlang)
 
 # ==================================================================================================
@@ -88,5 +90,6 @@ set(SRCS
     tests/MockConfig.h)
 
 add_executable(${TARGET} ${SRCS})
+set_target_properties(${TARGET} PROPERTIES FOLDER "tools/tests")
 
 target_link_libraries(${TARGET} matlang gtest)

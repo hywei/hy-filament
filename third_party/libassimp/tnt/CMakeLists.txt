@@ -261,6 +261,8 @@ include_directories(${PRIVATE_HDR_DIR})
 # we're building a library
 add_library(${TARGET} STATIC ${PRIVATE_HDRS} ${PUBLIC_HDRS} ${SRCS})
 
+set_target_properties(${TARGET} PROPERTIES FOLDER "third_party")
+
 if(NOT MSVC)
     target_compile_options(${TARGET}
         PRIVATE -Wno-strict-aliasing

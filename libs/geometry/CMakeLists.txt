@@ -24,6 +24,8 @@ include_directories(${PUBLIC_HDR_DIR})
 
 add_library(${TARGET} STATIC ${PUBLIC_HDRS} ${SRCS})
 
+set_target_properties(${TARGET} PROPERTIES FOLDER "libs")
+
 target_link_libraries(${TARGET} PUBLIC math utils)
 
 target_include_directories(${TARGET} PUBLIC ${PUBLIC_HDR_DIR})
@@ -49,5 +51,6 @@ install(DIRECTORY ${PUBLIC_HDR_DIR}/geometry DESTINATION include)
 # ==================================================================================================
 if (NOT ANDROID AND NOT WEBGL AND NOT IOS)
     add_executable(test_transcoder tests/test_transcoder.cpp)
+    set_target_properties(test_transcoder PROPERTIES FOLDER "libs/tests")
     target_link_libraries(test_transcoder PRIVATE ${TARGET} gtest)
 endif()

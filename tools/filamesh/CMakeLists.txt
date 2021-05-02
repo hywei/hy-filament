@@ -16,6 +16,7 @@ set(SRCS
 # ==================================================================================================
 add_executable(${TARGET} ${SRCS})
 
+set_target_properties(${TARGET} PROPERTIES FOLDER "tools")
 target_link_libraries(${TARGET} PUBLIC math)
 target_link_libraries(${TARGET} PUBLIC utils)
 target_link_libraries(${TARGET} PUBLIC assimp)

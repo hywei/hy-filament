@@ -85,6 +85,7 @@ add_custom_command(
 
 # Target to build the build_info.h file
 add_custom_target(glslang-build-info DEPENDS ${GLSLANG_BUILD_INFO_H})
+set_target_properties(glslang-build-info PROPERTIES FOLDER "third_party")
 
 # Populate the CMake GLSLANG_VERSION* variables with the build version
 # information.

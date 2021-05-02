@@ -13,6 +13,8 @@ set(SRCS src/main.cpp)
 # ==================================================================================================
 add_executable(${TARGET} ${SRCS})
 
+set_target_properties(${TARGET} PROPERTIES FOLDER "tools")
+
 target_link_libraries(${TARGET} getopt utils math)
 
 # =================================================================================================

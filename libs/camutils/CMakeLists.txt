@@ -26,6 +26,7 @@ set(SRCS
 include_directories(${PUBLIC_HDR_DIR})
 
 add_library(${TARGET} STATIC ${PUBLIC_HDRS} ${SRCS})
+set_target_properties(${TARGET} PROPERTIES FOLDER "libs")
 
 target_link_libraries(${TARGET} PUBLIC math)
 
@@ -52,5 +53,6 @@ install(DIRECTORY ${PUBLIC_HDR_DIR}/camutils DESTINATION include)
 # ==================================================================================================
 if (NOT ANDROID AND NOT WEBGL AND NOT IOS)
     add_executable(test_${TARGET} tests/test_camutils.cpp)
+    set_target_properties(test_${TARGET} PROPERTIES FOLDER "libs/tests")
     target_link_libraries(test_${TARGET} PRIVATE camutils gtest)
 endif()
