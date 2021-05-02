@@ -452,7 +452,7 @@ if(SPIRV_BUILD_FUZZER)
         PUBLIC SPIRV-Tools-reduce
         PUBLIC protobuf::libprotobuf)
 
-  set_property(TARGET SPIRV-Tools-fuzz PROPERTY FOLDER "SPIRV-Tools libraries")
+  set_property(TARGET SPIRV-Tools-fuzz PROPERTY FOLDER "third_party/spirv-tools/libraries")
   spvtools_check_symbol_exports(SPIRV-Tools-fuzz)
 
   if(ENABLE_SPIRV_TOOLS_INSTALL)

@@ -93,7 +93,7 @@ target_link_libraries(SPIRV-Tools-reduce
   PUBLIC ${SPIRV_TOOLS_FULL_VISIBILITY}
   PUBLIC SPIRV-Tools-opt)
 
-set_property(TARGET SPIRV-Tools-reduce PROPERTY FOLDER "SPIRV-Tools libraries")
+set_property(TARGET SPIRV-Tools-reduce PROPERTY FOLDER "third_party/spirv-tools/libraries")
 spvtools_check_symbol_exports(SPIRV-Tools-reduce)
 
 if(ENABLE_SPIRV_TOOLS_INSTALL)
