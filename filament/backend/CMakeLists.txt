@@ -204,6 +204,8 @@ set_target_properties(${TARGET} PROPERTIES FOLDER "filament")
 # specify where the public headers of this library are
 target_include_directories(${TARGET} PUBLIC ${PUBLIC_HDR_DIR})
 
+source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}" FILES ${PRIVATE_HDRS} ${PUBLIC_HDRS} ${SRCS})
+
 # ==================================================================================================
 # Expose a header-only target to minimize dependencies.
 # ==================================================================================================
