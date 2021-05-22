@@ -27,7 +27,8 @@
 
 #include <utils/compiler.h>
 
-namespace filament {
+namespace filament
+{
 
 class FVertexBuffer;
 
@@ -55,11 +56,12 @@ class UTILS_PUBLIC VertexBuffer : public FilamentAPI {
     struct BuilderDetails;
 
 public:
-    using AttributeType = backend::ElementType;
+    using AttributeType    = backend::ElementType;
     using BufferDescriptor = backend::BufferDescriptor;
 
     class Builder : public BuilderBase<BuilderDetails> {
         friend struct BuilderDetails;
+
     public:
         Builder() noexcept;
         Builder(Builder const& rhs) noexcept;
@@ -125,9 +127,11 @@ public:
          * This is a no-op if the \p bufferIndex is out of bounds.
          *
          */
-        Builder& attribute(VertexAttribute attribute, uint8_t bufferIndex,
-                AttributeType attributeType,
-                uint32_t byteOffset = 0, uint8_t byteStride = 0) noexcept;
+        Builder& attribute(VertexAttribute attribute,
+                           uint8_t         bufferIndex,
+                           AttributeType   attributeType,
+                           uint32_t        byteOffset = 0,
+                           uint8_t         byteStride = 0) noexcept;
 
         /**
          * Sets whether a given attribute should be normalized. By default attributes are not
@@ -180,8 +184,7 @@ public:
      * @param byteOffset Offset in *bytes* into the buffer at index \p bufferIndex of this vertex
      *                   buffer set.
      */
-    void setBufferAt(Engine& engine, uint8_t bufferIndex, BufferDescriptor&& buffer,
-            uint32_t byteOffset = 0);
+    void setBufferAt(Engine& engine, uint8_t bufferIndex, BufferDescriptor&& buffer, uint32_t byteOffset = 0);
 
     /**
      * Swaps in the given buffer object.
@@ -198,7 +201,8 @@ public:
     /**
      * Specifies the quaternion type for the "populateTangentQuaternions" utility.
      */
-    enum QuatType {
+    enum QuatType
+    {
         HALF4,  //!< 2 bytes per component as half-floats (8 bytes per quat)
         SHORT4, //!< 2 bytes per component as normalized integers (8 bytes per quat)
         FLOAT4, //!< 4 bytes per component as floats (16 bytes per quat)
@@ -207,15 +211,16 @@ public:
     /**
      * Specifies the parameters for the "populateTangentQuaternions" utility.
      */
-    struct QuatTangentContext {
-        QuatType quatType;                      //!< desired quaternion type (required)
-        size_t quatCount;                       //!< number of quaternions (required)
-        void* outBuffer;                        //!< pre-allocated output buffer (required)
-        size_t outStride;                       //!< desired stride in bytes (optional)
-        const math::float3* normals;  //!< source normals (required)
-        size_t normalsStride;                   //!< normals stride in bytes (optional)
-        const math::float4* tangents; //!< source tangents (optional)
-        size_t tangentsStride;                  //!< tangents stride in bytes (optional)
+    struct QuatTangentContext
+    {
+        QuatType            quatType;       //!< desired quaternion type (required)
+        size_t              quatCount;      //!< number of quaternions (required)
+        void*               outBuffer;      //!< pre-allocated output buffer (required)
+        size_t              outStride;      //!< desired stride in bytes (optional)
+        const math::float3* normals;        //!< source normals (required)
+        size_t              normalsStride;  //!< normals stride in bytes (optional)
+        const math::float4* tangents;       //!< source tangents (optional)
+        size_t              tangentsStride; //!< tangents stride in bytes (optional)
     };
 
     /**
