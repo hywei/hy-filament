@@ -88,7 +88,7 @@ int main(int argc, char** argv)
         app.mat = Material::Builder().package(RESOURCES_BAKEDCOLOR_DATA, RESOURCES_BAKEDCOLOR_SIZE).build(*engine);
         app.renderable = EntityManager::get().create();
         scene->addEntity(app.renderable);
-        app.camera = utils::EntityManager::get().create();
+        app.camera = EntityManager::get().create();
         app.cam    = engine->createCamera(app.camera);
         view->setCamera(app.cam);
     };

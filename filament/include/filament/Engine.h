@@ -21,13 +21,15 @@
 
 #include <utils/compiler.h>
 
-namespace utils {
+namespace utils
+{
 class Entity;
 class EntityManager;
 class JobSystem;
 } // namespace utils
 
-namespace filament {
+namespace filament
+{
 
 class BufferObject;
 class Camera;
@@ -148,7 +150,7 @@ class TransformManager;
 class UTILS_PUBLIC Engine {
 public:
     using Platform = backend::Platform;
-    using Backend = backend::Backend;
+    using Backend  = backend::Backend;
 
     /**
      * Creates an instance of Engine
@@ -186,8 +188,8 @@ public:
      * \remark
      * This method is thread-safe.
      */
-    static Engine* create(Backend backend = Backend::DEFAULT,
-            Platform* platform = nullptr, void* sharedGLContext = nullptr);
+    static Engine*
+    create(Backend backend = Backend::DEFAULT, Platform* platform = nullptr, void* sharedGLContext = nullptr);
 
 #if UTILS_HAS_THREADING
     /**
@@ -230,9 +232,11 @@ public:
      *                          Setting this parameter will force filament to use the OpenGL
      *                          implementation (instead of Vulkan for instance).
      */
-    static void createAsync(CreateCallback callback, void* user,
-            Backend backend = Backend::DEFAULT,
-            Platform* platform = nullptr, void* sharedGLContext = nullptr);
+    static void createAsync(CreateCallback callback,
+                            void*          user,
+                            Backend        backend         = Backend::DEFAULT,
+                            Platform*      platform        = nullptr,
+                            void*          sharedGLContext = nullptr);
 
     /**
      * Retrieve an Engine* from createAsync(). This must be called from the same thread than
@@ -337,12 +341,11 @@ public:
      */
     SwapChain* createSwapChain(void* nativeWindow, uint64_t flags = 0) noexcept;
 
-
     /**
      * Creates a headless SwapChain.
      *
-      * @param width    Width of the drawing buffer in pixels.
-      * @param height   Height of the drawing buffer in pixels.
+     * @param width    Width of the drawing buffer in pixels.
+     * @param height   Height of the drawing buffer in pixels.
      * @param flags     One or more configuration flags as defined in `SwapChain`.
      *
      * @return A pointer to the newly created SwapChain or nullptr if it couldn't be created.
@@ -406,11 +409,11 @@ public:
      */
     Fence* createFence() noexcept;
 
-    bool destroy(const BufferObject* p);        //!< Destroys a BufferObject object.
-    bool destroy(const VertexBuffer* p);        //!< Destroys an VertexBuffer object.
-    bool destroy(const Fence* p);               //!< Destroys a Fence object.
-    bool destroy(const IndexBuffer* p);         //!< Destroys an IndexBuffer object.
-    bool destroy(const IndirectLight* p);       //!< Destroys an IndirectLight object.
+    bool destroy(const BufferObject* p);  //!< Destroys a BufferObject object.
+    bool destroy(const VertexBuffer* p);  //!< Destroys an VertexBuffer object.
+    bool destroy(const Fence* p);         //!< Destroys a Fence object.
+    bool destroy(const IndexBuffer* p);   //!< Destroys an IndexBuffer object.
+    bool destroy(const IndirectLight* p); //!< Destroys an IndirectLight object.
 
     /**
      * Destroys a Material object
@@ -421,17 +424,17 @@ public:
      * no-op if exceptions are disabled and some MaterialInstances remain.
      */
     bool destroy(const Material* p);
-    bool destroy(const MaterialInstance* p);    //!< Destroys a MaterialInstance object.
-    bool destroy(const Renderer* p);            //!< Destroys a Renderer object.
-    bool destroy(const Scene* p);               //!< Destroys a Scene object.
-    bool destroy(const Skybox* p);              //!< Destroys a SkyBox object.
-    bool destroy(const ColorGrading* p);        //!< Destroys a ColorGrading object.
-    bool destroy(const SwapChain* p);           //!< Destroys a SwapChain object.
-    bool destroy(const Stream* p);              //!< Destroys a Stream object.
-    bool destroy(const Texture* p);             //!< Destroys a Texture object.
-    bool destroy(const RenderTarget* p);        //!< Destroys a RenderTarget object.
-    bool destroy(const View* p);                //!< Destroys a View object.
-    void destroy(utils::Entity e);              //!< Destroys all filament-known components from this entity
+    bool destroy(const MaterialInstance* p); //!< Destroys a MaterialInstance object.
+    bool destroy(const Renderer* p);         //!< Destroys a Renderer object.
+    bool destroy(const Scene* p);            //!< Destroys a Scene object.
+    bool destroy(const Skybox* p);           //!< Destroys a SkyBox object.
+    bool destroy(const ColorGrading* p);     //!< Destroys a ColorGrading object.
+    bool destroy(const SwapChain* p);        //!< Destroys a SwapChain object.
+    bool destroy(const Stream* p);           //!< Destroys a Stream object.
+    bool destroy(const Texture* p);          //!< Destroys a Texture object.
+    bool destroy(const RenderTarget* p);     //!< Destroys a RenderTarget object.
+    bool destroy(const View* p);             //!< Destroys a View object.
+    void destroy(utils::Entity e);           //!< Destroys all filament-known components from this entity
 
     /**
      * Kicks the hardware thread (e.g. the OpenGL, Vulkan or Metal thread) and blocks until
@@ -472,7 +475,6 @@ public:
      */
     void* streamAlloc(size_t size, size_t alignment = alignof(double)) noexcept;
 
-
     /**
      * helper for creating an Entity and Camera component in one call
      *
@@ -493,17 +495,17 @@ public:
     void destroy(const Camera* camera);
 
     /**
-      * Invokes one iteration of the render loop, used only on single-threaded platforms.
-      *
-      * This should be called every time the windowing system needs to paint (e.g. at 60 Hz).
-      */
+     * Invokes one iteration of the render loop, used only on single-threaded platforms.
+     *
+     * This should be called every time the windowing system needs to paint (e.g. at 60 Hz).
+     */
     void execute();
 
     /**
-      * Retrieves the job system that the Engine has ownership over.
-      *
-      * @return JobSystem used by filament
-      */
+     * Retrieves the job system that the Engine has ownership over.
+     *
+     * @return JobSystem used by filament
+     */
     utils::JobSystem& getJobSystem() noexcept;
 
     DebugRegistry& getDebugRegistry() noexcept;
@@ -511,12 +513,12 @@ public:
 protected:
     //! \privatesection
     Engine() noexcept = default;
-    ~Engine() = default;
+    ~Engine()         = default;
 
 public:
     //! \privatesection
     Engine(Engine const&) = delete;
-    Engine(Engine&&) = delete;
+    Engine(Engine&&)      = delete;
     Engine& operator=(Engine const&) = delete;
     Engine& operator=(Engine&&) = delete;
 };

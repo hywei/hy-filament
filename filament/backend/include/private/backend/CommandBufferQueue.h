@@ -19,20 +19,23 @@
 
 #include "private/backend/CircularBuffer.h"
 
-#include <utils/compiler.h>
 #include <utils/Condition.h>
 #include <utils/Mutex.h>
+#include <utils/compiler.h>
 
 #include <vector>
 
-namespace filament {
-namespace backend {
+namespace filament
+{
+namespace backend
+{
 
 /*
  * A producer-consumer command queue that uses a CircularBuffer as main storage
  */
 class CommandBufferQueue {
-    struct Slice {
+    struct Slice
+    {
         void* begin;
         void* end;
     };
@@ -43,12 +46,12 @@ class CommandBufferQueue {
 
     // space available in the circular buffer
 
-    mutable utils::Mutex mLock;
-    mutable utils::Condition mCondition;
+    mutable utils::Mutex       mLock;
+    mutable utils::Condition   mCondition;
     mutable std::vector<Slice> mCommandBuffersToExecute;
-    size_t mFreeSpace = 0;
-    size_t mHighWatermark = 0;
-    uint32_t mExitRequested = 0;
+    size_t                     mFreeSpace     = 0;
+    size_t                     mHighWatermark = 0;
+    uint32_t                   mExitRequested = 0;
 
     static constexpr uint32_t EXIT_REQUESTED = 0x31415926;
 
@@ -57,9 +60,15 @@ public:
     CommandBufferQueue(size_t requiredSize, size_t bufferSize);
     ~CommandBufferQueue();
 
-    CircularBuffer& getCircularBuffer() { return mCircularBuffer; }
+    CircularBuffer& getCircularBuffer()
+    {
+        return mCircularBuffer;
+    }
 
-    size_t getHighWatermark() const noexcept { return mHighWatermark; }
+    size_t getHighWatermark() const noexcept
+    {
+        return mHighWatermark;
+    }
 
     // wait for commands to be available and returns an array containing these commands
     std::vector<Slice> waitForCommands() const;
